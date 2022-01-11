@@ -1,45 +1,5 @@
 "use strict";
 
-function createCalculatop(defaultNumber){ 
-
-    return {
-        add:(num) => {
-            if(typeof num != "number"){
-                return defaultNumber;
-            } else {
-                return defaultNumber += num;
-            }
-        },
-        sub:(num) => {
-            if(typeof num != "number"){
-                return defaultNumber;
-            } else {
-                return defaultNumber -= num;
-            }
-        },
-        mult:(num) => {
-            if(typeof num != "number"){
-                return defaultNumber;
-            } else {
-                return defaultNumber *= num;
-            }
-        },
-        div:(num) => {
-            if(typeof num != "number"){
-                return defaultNumber;
-            } else {
-                return defaultNumber /= num;
-            }
-        },
-        set:(num) =>{
-            defaultNumber = num;
-        },
-        get:()=>{
-            return defaultNumber;
-        }
-    };
-}
-
 const calculator = createCalculatop(100);
 
 calculator.add(10);
@@ -50,3 +10,15 @@ calculator.add(10);
 calculator.add(10); 
 calculator.add('qwe');
 console.log(calculator.get());
+
+function createCalculatop(defaultNumber){ 
+
+    return {
+        add:(num) => typeof num != "number" ? defaultNumber : defaultNumber += num,
+        sub:(num) => typeof num != "number" ? defaultNumber : defaultNumber -= num,
+        mult:(num) => typeof num != "number" ? defaultNumber : defaultNumber *= num,
+        div:(num) => typeof num != "number" ? defaultNumber : defaultNumber /= num,
+        set:(num) => defaultNumber = num,
+        get:() => defaultNumber,
+    };
+}
